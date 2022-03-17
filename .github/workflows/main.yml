@@ -6,6 +6,22 @@ jobs:
   tweet:
     runs-on: ubuntu-latest
     steps:
+      - name: commit
+        run: |
+          year=`TZ=Asia/Tokyo date '+%Y' --date '1 day ago'`
+          month=`TZ=Asia/Tokyo date '+%m' --date '1 day ago'`
+          date=`TZ=Asia/Tokyo date '+%d' --date '1 day ago'`
+          mkdir -p images
+          number=1
+          images=`curl -sS https://dapcdfpydg7sr.cloudfront.net/keihin00787/images/${year}/${month}/${date}/images.txt`
+          for imagepath in $images
+          do
+            url="https://dapcdfpydg7sr.cloudfront.net/${imagepath}"
+            num=`printf %03d $number`
+            curl -sS $url > "images/${num}.jpg"
+            number=$((number+1))
+          done
+          ffmpeg -r 10 -i images/%03d.jpg -vcodec libx264 -pix_fmt yuv420p -r 40 -strict -2 -acodec aac out.mp4
       - name: Tweet
         id: tweet
         uses: snow-actions/tweet@v1.1.1
@@ -17,4 +33,6 @@ jobs:
         with:
           status: |
             test
+          media_paths: |
+            out.mp4
       - run: echo ${{ steps.tweet.outputs.response }}
