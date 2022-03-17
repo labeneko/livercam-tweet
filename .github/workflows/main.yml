@@ -8,9 +8,7 @@ jobs:
     steps:
       - name: commit
         run: |
-            curl -sS $url > "images/${num}.jpg"
-            number=$((number+1))
-            curl -O -sS https://help.twitter.com/content/dam/help-twitter/brand/logo.png
+            curl -sS https://help.twitter.com/content/dam/help-twitter/brand/logo.png > logo.png
       - name: Tweet
         id: tweet
         uses: snow-actions/tweet@v1.1.1
