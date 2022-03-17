@@ -11,7 +11,7 @@ jobs:
             curl -sS https://www.home-movie.biz/mov/hts-samp001.mp4 > sample.mp4
       - name: Tweet
         id: tweet
-        uses: labeneko/tweet@master
+        uses: labeneko/tweet@main
         env:
           CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
           CONSUMER_API_SECRET_KEY: ${{ secrets.TWITTER_CONSUMER_API_SECRET_KEY }}
