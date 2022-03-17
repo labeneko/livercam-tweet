@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: commit
+        id: commit
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg
@@ -24,6 +25,8 @@ jobs:
             number=$((number+1))
           done
           ffmpeg -r 10 -i images/%03d.jpg -vcodec libx264 -pix_fmt yuv420p -r 40 -strict -2 -acodec aac out.mp4
+          message="${year}年${month}月${date}日に配信された、京王線橋梁上流にある多摩川ライブカメラの映像です https://www.livercam.net/cameras/keihin00787/date/${year}${month}${date}"
+          echo "::set-output name=MESSAGE::${message}"
       - name: Tweet
         id: tweet
         uses: labeneko/tweet@main
@@ -34,7 +37,7 @@ jobs:
           ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         with:
           status: |
-            "${year}年${month}月${date}日に配信された、京王線橋梁上流にある多摩川ライブカメラの映像です\nhttps://www.livercam.net/cameras/keihin00787/date/${year}${month}${date}"
+            ${{ steps.commit.outputs.MESSAGE }}
           media_paths: |
             out.mp4
       - run: echo ${{ steps.tweet.outputs.response }}
