@@ -34,7 +34,7 @@ jobs:
           ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         with:
           status: |
-            test
+            "${year}年${month}月${date}日に配信された、京王線橋梁上流にある多摩川ライブカメラの映像です\nhttps://www.livercam.net/cameras/keihin00787/date/${year}${month}${date}"
           media_paths: |
             out.mp4
       - run: echo ${{ steps.tweet.outputs.response }}
