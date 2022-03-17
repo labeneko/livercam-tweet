@@ -1,7 +1,6 @@
 name: 'Tweet test'
 on:
-  release:
-    types: [push]
+  workflow_dispatch:
 
 jobs:
   tweet:
