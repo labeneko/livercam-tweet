@@ -1,7 +1,7 @@
 name: 'Tweet test'
 on:
   release:
-    types: [released]
+    types: [push]
 
 jobs:
   tweet:
