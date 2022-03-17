@@ -8,22 +8,9 @@ jobs:
     steps:
       - name: commit
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg
-          year=`TZ=Asia/Tokyo date '+%Y' --date '1 day ago'`
-          month=`TZ=Asia/Tokyo date '+%m' --date '1 day ago'`
-          date=`TZ=Asia/Tokyo date '+%d' --date '1 day ago'`
-          mkdir -p images
-          number=1
-          images=`curl -sS https://dapcdfpydg7sr.cloudfront.net/keihin00787/images/${year}/${month}/${date}/images.txt`
-          for imagepath in $images
-          do
-            url="https://dapcdfpydg7sr.cloudfront.net/${imagepath}"
-            num=`printf %03d $number`
             curl -sS $url > "images/${num}.jpg"
             number=$((number+1))
-          done
-          ffmpeg -r 10 -i images/%03d.jpg -vcodec libx264 -pix_fmt yuv420p -r 40 -strict -2 -acodec aac out.mp4
+            curl -O -sS https://help.twitter.com/content/dam/help-twitter/brand/logo.png
       - name: Tweet
         id: tweet
         uses: snow-actions/tweet@v1.1.1
@@ -36,5 +23,5 @@ jobs:
           status: |
             test
           media_paths: |
-            out.mp4
+            logo.png
       - run: echo ${{ steps.tweet.outputs.response }}
