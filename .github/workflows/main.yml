@@ -25,7 +25,7 @@ jobs:
             number=$((number+1))
           done
           ffmpeg -r 10 -i images/%03d.jpg -vcodec libx264 -pix_fmt yuv420p -r 40 -strict -2 -acodec aac out.mp4
-          message="${year}年${month}月${date}日に配信された、京王線橋梁上流にある多摩川ライブカメラの映像です。 \n https://www.livercam.net/cameras/keihin00787/date/${year}${month}${date}"
+          message="${year}年${month}月${date}日に配信された、京王線橋梁上流にある多摩川ライブカメラの映像です。%0Ahttps://www.livercam.net/cameras/keihin00787/date/${year}${month}${date}"
           echo "::set-output name=MESSAGE::${message}"
       - name: Tweet
         id: tweet
