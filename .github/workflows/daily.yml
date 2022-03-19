@@ -1,0 +1,13 @@
+name: daily
+on: [workflow_dispatch]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Invoke workflow
+      uses: benc-uk/workflow-dispatch@v1
+      with:
+        workflow: tmp_daily
+        token: ${{ secrets.TOKEN }}
+        inputs: '{ "id": "daimaru", "name": "大丸用水堰下流", "liver_name": "多摩川", "address": "東京都府中市是政6丁目(河口から32.4km)" }'
