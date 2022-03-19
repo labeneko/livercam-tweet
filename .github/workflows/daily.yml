@@ -14,6 +14,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "daimaru", "name": "大丸用水堰下流", "liver_name": "多摩川", "address": "東京都府中市是政6丁目(河口から32.4km)" }'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -29,6 +32,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00160", "name": "田園調布出張所", "liver_name": "多摩川", "address": "東京都大田区田園調布本町(河口から12.5km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -44,6 +50,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00169", "name": "日野橋水位観測所", "liver_name": "多摩川", "address": "東京都立川市錦町(河口から39.9km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -59,6 +68,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00174", "name": "浅川橋水位観測所", "liver_name": "浅川", "address": "東京都八王子市大横町(多摩川合流地点から11.4km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -74,6 +86,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00654", "name": "小田急線橋梁上流", "liver_name": "多摩川", "address": "東京都狛江市東和泉(河口から23.1km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -89,6 +104,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00656", "name": "睦橋上流", "liver_name": "多摩川", "address": "東京都福生市南田園(河口から49.4km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -104,6 +122,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00778", "name": "多摩川緑地事務所", "liver_name": "多摩川", "address": "東京都大田区西六郷4丁目(河口から6.2km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -119,6 +140,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00781", "name": "田園調布(上) 水位観測所", "liver_name": "多摩川", "address": "東京都大田区田園調布1丁目(河口から13.4km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -134,6 +158,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00783", "name": "戸手樋管", "liver_name": "多摩川", "address": "神奈川県川崎市幸区小向地先(河口から7.5km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -149,12 +176,6 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00785", "name": "石原第二水位観測所", "liver_name": "多摩川", "address": "神奈川県川崎市多摩区菅6丁目(河口から27.8km)"}'
-    - name: Invoke workflow
-      uses: benc-uk/workflow-dispatch@v1
-      with:
-        workflow: tmp_daily
-        token: ${{ secrets.TOKEN }}
-        inputs: '{ "id": "keihin00787", "name": "京王線橋梁上流", "liver_name": "多摩川", "address": "東京都多摩市関戸1丁目(河口から35.3km)"}'
     - name: Sleep for 120 seconds
       run: sleep 120s
       shell: bash
@@ -164,6 +185,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00788", "name": "高幡橋水位観測所", "liver_name": "浅川", "address": "東京都日野市高幡地先(多摩川合流地点から1.8km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -179,6 +203,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00790", "name": "暁橋上流", "liver_name": "浅川", "address": "東京都八王子市田町8丁目(多摩川合流地点から11km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -194,6 +221,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00792", "name": "栄町排水樋管", "liver_name": "多摩川", "address": "東京都日野市栄町2丁目(河口から41.6km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -209,6 +239,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00794", "name": "秋川合流点", "liver_name": "多摩川", "address": "東京都昭島市拝島町5丁目(河口から47.8km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
@@ -224,6 +257,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "keihin00796", "name": "那賀樋管", "liver_name": "多摩川", "address": "東京都羽村市羽中4丁目(河口から54km)"}'
+    - name: Sleep for 120 seconds
+      run: sleep 120s
+      shell: bash
     - name: Invoke workflow
       uses: benc-uk/workflow-dispatch@v1
       with:
