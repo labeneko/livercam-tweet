@@ -1,5 +1,8 @@
 name: daily
-on: [workflow_dispatch]
+on:
+  schedule:
+    - cron:  '20 15 * * *'
+  workflow_dispatch:
 
 jobs:
   deploy:
