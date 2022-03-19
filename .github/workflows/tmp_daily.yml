@@ -41,7 +41,7 @@ jobs:
             fi
             number=$((number+1))
           done
-          ffmpeg -r 5 -i images/%03d.jpg -vcodec libx264 -pix_fmt yuv420p -r 40 -strict -2 -acodec aac out.mp4
+          ffmpeg -r 6 -i images/%03d.jpg -vcodec libx264 -pix_fmt yuv420p -r 40 -strict -2 -acodec aac out.mp4
           message="${year}年${month}月${date}日に配信された、${name}にある${liver}ライブカメラの映像です。%0A住所: ${address}%0Ahttps://www.livercam.net/cameras/${id}/date/${year}${month}${date}"
           echo "::set-output name=MESSAGE::${message}"
       - name: Tweet
