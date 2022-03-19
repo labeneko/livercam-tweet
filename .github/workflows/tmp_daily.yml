@@ -1,0 +1,57 @@
+name: 'tmp_daily'
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        default: 'dummy'
+      name:
+        default: 'dummy'
+      liver_name:
+        default: 'dummy'
+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: commit
+        id: commit
+        run: |
+          id="${{ github.event.inputs.id }}"
+          name="${{ github.event.inputs.name }}"
+          liver="${{ github.event.inputs.liver_name }}"
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg imagemagick
+          year=`TZ=Asia/Tokyo date '+%Y' --date '1 day ago'`
+          month=`TZ=Asia/Tokyo date '+%m' --date '1 day ago'`
+          date=`TZ=Asia/Tokyo date '+%d' --date '1 day ago'`
+          mkdir -p images
+          number=1
+          images=`curl -sS https://dapcdfpydg7sr.cloudfront.net/${id}/images/${year}/${month}/${date}/images.txt`
+          for imagepath in $images
+          do
+            url="https://dapcdfpydg7sr.cloudfront.net/${imagepath}"
+            num=`printf %03d $number`
+            curl -sS $url > "images/${num}.jpg"
+            if [[ ${url} =~ ([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})\.jpg$ ]]; then
+              time="${BASH_REMATCH[1]}/${BASH_REMATCH[2]}/${BASH_REMATCH[3]} ${BASH_REMATCH[4]}:${BASH_REMATCH[5]}"
+              convert -font DejaVu-Sans -pointsize 30 -gravity northeast -annotate +10+40 "$time" -fill orange "images/${num}.jpg" "images/${num}.jpg"
+            fi
+            number=$((number+1))
+          done
+          ffmpeg -r 5 -i images/%03d.jpg -vcodec libx264 -pix_fmt yuv420p -r 40 -strict -2 -acodec aac out.mp4
+          message="${year}年${month}月${date}日に配信された、${name}にある${liver}ライブカメラの映像です。%0Ahttps://www.livercam.net/cameras/${id}/date/${year}${month}${date}"
+          echo "::set-output name=MESSAGE::${message}"
+      - name: Tweet
+        id: tweet
+        uses: labeneko/tweet@main
+        env:
+          CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+          CONSUMER_API_SECRET_KEY: ${{ secrets.TWITTER_CONSUMER_API_SECRET_KEY }}
+          ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+        with:
+          status: |
+            ${{ steps.commit.outputs.MESSAGE }}
+          media_paths: |
+            out.mp4
+      - run: echo ${{ steps.tweet.outputs.response }}
