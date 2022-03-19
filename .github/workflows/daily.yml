@@ -11,3 +11,9 @@ jobs:
         workflow: tmp_daily
         token: ${{ secrets.TOKEN }}
         inputs: '{ "id": "daimaru", "name": "大丸用水堰下流", "liver_name": "多摩川", "address": "東京都府中市是政6丁目(河口から32.4km)" }'
+    - name: Invoke workflow
+      uses: benc-uk/workflow-dispatch@v1
+      with:
+        workflow: tmp_daily
+        token: ${{ secrets.TOKEN }}
+        inputs: '{ "id": "keihin00151", "name": "多摩川河口水位観測所", "liver_name": "多摩川", "address": "神奈川県川崎市川崎区殿町(河口から0.1km)" }'
